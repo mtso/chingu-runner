@@ -26,6 +26,9 @@ app.get('/auth', function(req, res) {
     return res.redirect('/');
   }
 
+  console.log(req.query)
+  console.log(req.body)
+
   let url = '' // 'https://slack.com/api/oauth.access'
   request.get(url, function(err, result) {
     if (err) {
