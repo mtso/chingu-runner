@@ -43,6 +43,7 @@ app.get('/', function(req, res) {
 
 app.post('/command', function(req, res) {
   console.log(req.body)
+  res.json(data)
 })
 
 app.listen(port, function() {
