@@ -4,7 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "node server.js",
+    "torus": "torus run node server.js"
   },
   "author": "mtso <mtso@tuta.io>",
   "license": "ISC",
