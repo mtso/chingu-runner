@@ -41,6 +41,7 @@ app.get('/auth', function(req, res) {
     if (err) {
       return console.error('ERROR', err)
     }
+    console.log(body)
     let team = JSON.parse(body).team.domain
     res.redirect('https://' + team + '.slack.com')
   }
