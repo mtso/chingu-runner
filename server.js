@@ -4,10 +4,12 @@ const bodyParser = require('body-parser')
 // const mongoose = require('mongoose')
 const request = require('request')
 const path = require('path')
+const morgan = require('morgan')
 
 const port = process.env.PORT || 3750;
 const indexPath = path.resolve(__dirname, 'public')
 
+app.use(morgan('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
   extended: true
@@ -26,17 +28,32 @@ app.get('/auth', function(req, res) {
     return res.redirect('/');
   }
 
-  console.log(req.query)
-  console.log(req.body)
-
-  let url = '' // 'https://slack.com/api/oauth.access'
-  request.get(url, function(err, result) {
-    if (err) {
-      return res.send('Error', err)
+  const authUrl = 'https://slack.com/api/oauth.access'
+  const data = {
+    form: {
+      client_id: process.env.SLACK_CLIENT_ID,
+      client_secret: process.env.SLACK_CLIENT_SECRET,
+      code: req.query.code,
     }
+  }
 
-    _ = result.body.access_token
-    res.send('bot added.')
+  let redirectTeam = function(err, res, body) {
+    if (err) {
+      return console.error('ERROR', err)
+    }
+    let team = JSON.parse(body).team.domain
+    res.redirect('https://' + team + '.slack.com')
+  }
+
+  request.post(authUrl, data, function(err, res, body) {
+    if (err) {
+      return console.error('ERROR', err)
+    }
+    let team = {
+      url: 'https://slack.com/api/team.info',
+      token: JSON.parse(body).access_token,
+    }
+    request.post(team, redirectTeam)
   })
 })
 
