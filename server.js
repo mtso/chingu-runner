@@ -51,9 +51,10 @@ app.get('/auth', function(req, res) {
       return console.error('ERROR', err)
     }
     console.log('FROM AUTH TO TEAM', body)
+    let token = JSON.parse(body).access_token
     let team = {
       url: 'https://slack.com/api/team.info',
-      token: JSON.parse(body).access_token,
+      formData: {token}
     }
     request.post(team, redirectTeam)
   })
