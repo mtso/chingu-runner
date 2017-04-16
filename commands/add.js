@@ -1,6 +1,6 @@
 const Day = require('../models/Day')
 const EphemeralError = require('../utils/ephemeral-error')
-const User = require('../')
+const User = require('../models/User')
 
 const MAX_DAYS = 30;
 
@@ -12,19 +12,20 @@ function checkUser(body, callback) {
   })
 
   user.save((err, data) => {
-    callback(err, data)
+    if (err && err.code !== 11000) {
+      return callback(err, data)
+    }
+    callback(null, data)
   })
 }
 
 function add(body, args) {
   // Add user if user doesn't exist
   return new Promise((resolve, reject) => {
-    checkUser((err, data) => {
+    checkUser(body, (err, data) => {
       if (err) {
         reject(new EphemeralError(err))
       }
-
-      console.log(data)
 
       if (!args.trim()) {
         let err = new EphemeralError('A title is required to add a new day.')
