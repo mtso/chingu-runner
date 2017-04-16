@@ -25,7 +25,7 @@ module.exports = function(req, res) {
       _id: body.team_id,
       webhook: body.incoming_webhook.url
     })
-    team.save((err, team) {
+    team.save((err, team) => {
       console.log(err, team)
     })
 
