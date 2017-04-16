@@ -41,6 +41,7 @@ app.get('/auth', function(req, res) {
     if (err || resp.statusCode !== 200) {
       return console.error('ERROR', err, resp)
     }
+    console.log(body)
     let token = JSON.parse(body).access_token
     let team = {
       url: 'https://slack.com/api/team.info',
