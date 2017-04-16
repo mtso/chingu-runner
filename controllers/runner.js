@@ -2,14 +2,15 @@ const commands = require('../commands')
 
 module.exports = function(req, res) {
   let args = req.body.text.split(' ')
-  let cmd = commands[text.shift()]
+  let cmd = commands[args.shift()]
+
   if (cmd) {
     cmd(req.body, args.join(' '))
       .then((response) => {
         res.json(response)
       })
-      .catch(err => {
-        res.json(err)
+      .catch(errorResponse => {
+        res.json(errorResponse)
       })
 
   } else {
