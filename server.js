@@ -37,9 +37,9 @@ app.get('/auth', function(req, res) {
     }
   }
 
-  let redirectTeam = function(err, res, body) {
-    if (err) {
-      return console.error('ERROR', err)
+  let redirectTeam = function(err, resp, body) {
+    if (err || resp.statusCode !== 200) {
+      return console.error('ERROR', err, resp)
     }
     body = JSON.parse(body)
     if (body.error === 'missing_scope') {
