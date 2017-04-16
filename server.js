@@ -42,7 +42,11 @@ app.post('/command', function(req, res) {
     } else {
       res.json(data)
       console.log('POSTING', team)
-      request.post(team.webhook, {form: {text: req.body.user_name + ' says hello~'}})
+      // request.post(team.webhook, {form: {text: req.body.user_name + ' says hello~'}})
+      request.post({
+        url: team.webhook,
+        formData: { text: req.body.user_name + ' says hello~' }
+      }, (err, data) => console.log(err, data))
     }
   })
 })
