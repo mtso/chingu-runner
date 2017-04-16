@@ -10,6 +10,7 @@ const port = process.env.PORT || 3750;
 const indexPath = path.resolve(__dirname, 'public')
 
 const authController = require('./controllers/auth')
+const runController = require('./controller/runner')
 
 let Team = require('./models/Team')
 
@@ -33,31 +34,7 @@ app.get('/', function(req, res) {
   res.sendFile(indexPath)
 })
 
-app.post('/command', function(req, res) {
-  Team.findOne({_id: req.body.team_id}, '_id webhook', function(err, team) {
-    if (err || !team) {
-      return res.json({
-        error: 'Team not found.'
-      })
-    } else {
-      if (req.body.text === 'whisper') {
-        let d = {
-          response_type: 'ephemeral',
-          text: 'Hello, world~'
-        }
-        return res.json(d)
-      }
-
-      request.post({
-        url: team.webhook,
-        body: { text: req.body.user_name + ' says hello~' },
-        json: true
-      }, (err, data) => console.log(err, data.body)) // Need to change this so that if access is revoked, we remove the team webhook
-      res.json(data)
-
-    }
-  })
-})
+app.post('/command', runController)
 
 app.listen(port, function() {
   console.log('listening on', port)
