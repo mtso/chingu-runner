@@ -17,7 +17,7 @@ module.exports = function(req, res) {
     // Handle unknown command, print help text
     let d = {
       response_type: 'ephemeral',
-      text: 'Available commands are: ' + Object.keys(commands).join()
+      text: 'Available commands are: ' + Object.keys(commands).join(', ')
     }
     return res.json(d)
   }

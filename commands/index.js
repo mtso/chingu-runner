@@ -1,14 +1,9 @@
 const add = require('./add')
 const list = require('./list')
-
-// Slack API test commands
-const echo = require('./echo')
-const shout = require('./shout')
+const done = require('./done')
 
 module.exports = {
   add,
   list,
-
-  echo,
-  shout,
+  done,
 }
