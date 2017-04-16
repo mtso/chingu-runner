@@ -34,14 +34,14 @@ app.get('/', function(req, res) {
 })
 
 app.post('/command', function(req, res) {
-  Team.find({_id: req.body.team_id}, function(err, data) {
-    if (err || data.length === 0) {
+  Team.findOne({_id: req.body.team_id}, '_id webhook', function(err, team) {
+    if (err || team) {
       return res.json({
         error: 'Team not found.'
       })
     } else {
       res.json(data)
-      request.post(data.webhook, {form: {text: req.body.user_name + ' says hello~'}})
+      request.post(team.webhook, {form: {text: req.body.user_name + ' says hello~'}})
     }
   })
 })
