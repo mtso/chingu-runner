@@ -40,13 +40,15 @@ app.post('/command', function(req, res) {
         error: 'Team not found.'
       })
     } else {
-      res.json(data)
       console.log('POSTING', team)
       // request.post(team.webhook, {form: {text: req.body.user_name + ' says hello~'}})
       request.post({
         url: team.webhook,
-        formData: { text: req.body.user_name + ' says hello~' }
-      }, (err, data) => console.log(err, data))
+        body: { text: req.body.user_name + ' says hello~' },
+        json: true
+      }, (err, data) => console.log(err, data.body))
+      res.json(data)
+
     }
   })
 })
