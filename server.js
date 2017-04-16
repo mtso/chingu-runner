@@ -28,29 +28,20 @@ app.get('/auth', function(req, res) {
     return res.redirect('/');
   }
 
-  const authUrl = 'https://slack.com/api/oauth.access'
-  const data = {
-    form: {
+  const auth = {
+    url: 'https://slack.com/api/oauth.access',
+    formData: {
       client_id: process.env.SLACK_CLIENT_ID,
       client_secret: process.env.SLACK_CLIENT_SECRET,
       code: req.query.code,
     }
   }
 
-  let redirectTeam = function(err, res, body) {
-    if (err) {
-      return console.error('ERROR', err)
+  request.post(auth, function(err, resp, body) {
+    if (err || resp.statusCode !== 200) {
+      return console.error('ERROR', err, resp)
     }
     console.log(body)
-    let team = JSON.parse(body).team.domain
-    res.redirect('https://' + team + '.slack.com')
-  }
-
-  request.post(authUrl, data, function(err, res, body) {
-    if (err) {
-      return console.error('ERROR', err)
-    }
-    console.log('FROM AUTH TO TEAM', body)
     let token = JSON.parse(body).access_token
     let team = {
       url: 'https://slack.com/api/team.info',
@@ -58,6 +49,19 @@ app.get('/auth', function(req, res) {
     }
     request.post(team, redirectTeam)
   })
+
+  function redirectTeam(err, resp, body) {
+    if (err || resp.statusCode !== 200) {
+      return console.error('ERROR', err, resp)
+    }
+    body = JSON.parse(body)
+    if (body.error === 'missing_scope') {
+      res.send('Chingu Runner added to your team!')
+    } else {
+      let team = body.team.domain
+      res.redirect('https://' + team + '.slack.com')
+    }
+  }
 })
 
 app.get('/', function(req, res) {
