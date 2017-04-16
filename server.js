@@ -10,7 +10,7 @@ const port = process.env.PORT || 3750;
 const indexPath = path.resolve(__dirname, 'public')
 
 const authController = require('./controllers/auth')
-const runController = require('./controller/runner')
+const runController = require('./controllers/runner')
 
 let Team = require('./models/Team')
 
