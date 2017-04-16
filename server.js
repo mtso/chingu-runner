@@ -35,7 +35,7 @@ app.get('/', function(req, res) {
 
 app.post('/command', function(req, res) {
   Team.findOne({_id: req.body.team_id}, '_id webhook', function(err, team) {
-    if (err || team) {
+    if (err || !team) {
       return res.json({
         error: 'Team not found.'
       })
