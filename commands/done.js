@@ -8,6 +8,7 @@ function done(body, args) {
   // If no args, complete today's item
   // else try to find item with id
   return new Promise((resolve, reject) => {
+    // Don't handle id targeting yet
     // if (!args.trim()) {
     Day
       .find({_user_id: body.user_id, done: {$exists: false}})
@@ -35,13 +36,12 @@ function done(body, args) {
         text: 'You finished ' + today.title + '!'
       }
       resolve(response)
-      console.log(body.team_id)
       Team.findOne({_id: body.team_id}, 'webhook', postCompletion)
     }
 
     function postCompletion(err, team) {
+      // Team is null here when in local dev env.
       if (err || !team) {
-        console.log(team)
         return reject(new EphemeralError(err))
       }
 
