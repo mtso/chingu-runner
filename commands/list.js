@@ -1,7 +1,7 @@
 const Day = require('../models/Day')
 const EphemeralError = require('../utils/ephemeral-error')
 
-const MAX_DAYS = 29;
+const MAX_DAYS = 30;
 
 function list(body, args) {
   return new Promise((resolve, reject) => {
@@ -13,13 +13,17 @@ function list(body, args) {
           let error = new EphemeralError(err.toString())
           return reject(error)
         }
+        let previousDone = true;
         let days = data.map(d => {
           let box = d.done ? '[X]' : '[ ]'
-          return box + ' ' + d.title
+          let markToday = (previousDone && !d.done) ? ' (Today)' : ''
+          previousDone = d.done
+          return box + ' ' + d.title + markToday
         }).join('\n')
         let response = {
           response_type: 'ephemeral',
-          text: days
+          text: '```' + days + '```',
+          mrkdn: true,
         }
         resolve(response)
       })
