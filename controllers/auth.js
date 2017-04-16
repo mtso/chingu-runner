@@ -21,12 +21,18 @@ module.exports = function(req, res) {
     }
     body = JSON.parse(body)
 
+    if (!body.incoming_webhook) {
+      return res.redirect('/')
+    }
+
     let t = new Team({
       _id: body.team_id,
       webhook: body.incoming_webhook.url
     })
-    t.save((err, team) => {
-      console.log(err, team)
+    t.save((err, _) => {
+      if (err) {
+        console.error(err)
+      }
     })
 
     let token = body.access_token
