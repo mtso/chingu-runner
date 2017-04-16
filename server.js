@@ -40,9 +40,21 @@ app.post('/command', function(req, res) {
         error: 'Team not found.'
       })
     } else {
+      if (req.body.text === 'whisper') {
+        let d = {
+          response_type: 'ephemeral',
+          text: 'Hello, world~'
+        }
+        return res.json(d)
+      }
+
+      request.post({
+        url: team.webhook,
+        body: { text: req.body.user_name + ' says hello~' },
+        json: true
+      }, (err, data) => console.log(err, data.body)) // Need to change this so that if access is revoked, we remove the team webhook
       res.json(data)
-      console.log('POSTING', team)
-      request.post(team.webhook, {form: {text: req.body.user_name + ' says hello~'}})
+
     }
   })
 })
