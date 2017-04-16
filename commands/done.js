@@ -47,8 +47,11 @@ function done(body, args) {
 
       request.post({
           url: team.webhook,
-          body: { text: '@' + body.user_name + ' finished today!' },
-          json: true
+          body: {
+            text: '@' + body.user_name + ' finished today!',
+            link_names: true,
+          },
+          json: true,
         }
         // Need to change this so that if access is revoked, we remove the team webhook
         , (err, data) => console.log(err, data.body)
