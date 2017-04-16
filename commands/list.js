@@ -13,7 +13,10 @@ function list(body, args) {
           let error = new EphemeralError(err.toString())
           return reject(error)
         }
-        let days = data.map(d => d.title).join('\n')
+        let days = data.map(d => {
+          let box = d.done ? '[X]' : '[ ]'
+          return box + ' ' + d.title
+        }).join('\n')
         let response = {
           response_type: 'ephemeral',
           text: days
