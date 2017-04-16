@@ -28,16 +28,28 @@ app.get('/auth', function(req, res) {
     return res.redirect('/');
   }
 
-  const authUrl = 'https://slack.com/api/oauth.access'
-  const data = {
-    form: {
+  const auth = {
+    url: 'https://slack.com/api/oauth.access'
+    formData: {
       client_id: process.env.SLACK_CLIENT_ID,
       client_secret: process.env.SLACK_CLIENT_SECRET,
       code: req.query.code,
     }
   }
 
-  let redirectTeam = function(err, resp, body) {
+  request.post(auth, function(err, resp, body) {
+    if (err || resp.statusCode !== 200) {
+      return console.error('ERROR', err, resp)
+    }
+    let token = JSON.parse(body).access_token
+    let team = {
+      url: 'https://slack.com/api/team.info',
+      formData: {token}
+    }
+    request.post(team, redirectTeam)
+  })
+
+  function redirectTeam(err, resp, body) {
     if (err || resp.statusCode !== 200) {
       return console.error('ERROR', err, resp)
     }
@@ -49,19 +61,6 @@ app.get('/auth', function(req, res) {
       res.redirect('https://' + team + '.slack.com')
     }
   }
-
-  request.post(authUrl, data, function(err, res, body) {
-    if (err) {
-      return console.error('ERROR', err)
-    }
-    console.log('FROM AUTH TO TEAM', body)
-    let token = JSON.parse(body).access_token
-    let team = {
-      url: 'https://slack.com/api/team.info',
-      formData: {token}
-    }
-    request.post(team, redirectTeam)
-  })
 })
 
 app.get('/', function(req, res) {
