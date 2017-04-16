@@ -1,10 +1,10 @@
-const commands = require('./commands')
+const commands = require('../commands')
 
 module.exports = function(req, res) {
-  let text = req.body.text.split(' ')
+  let args = req.body.text.split(' ')
   let cmd = commands[text.shift()]
   if (cmd) {
-    cmd(req.body, text.join(' '))
+    cmd(req.body, args.join(' '))
       .then((response) => {
         res.json(response)
       })
