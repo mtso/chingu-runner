@@ -21,11 +21,11 @@ module.exports = function(req, res) {
     }
     body = JSON.parse(body)
 
-    let team = new Team({
+    let t = new Team({
       _id: body.team_id,
       webhook: body.incoming_webhook.url
     })
-    team.save((err, team) => {
+    t.save((err, team) => {
       console.log(err, team)
     })
 
