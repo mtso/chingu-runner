@@ -2,10 +2,59 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>runbot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chingu Runner</title>
+    <link href="style.css" rel="stylesheet">
   </head>
   <body>
-    hello~
-    <a href="https://slack.com/oauth/authorize?scope=incoming-webhook,commands&client_id=158095711217.169077180816"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
+
+    <div id="landing-bkgd">
+    </div>
+    <h1 class="titlemark" id="titlemark">Chingu Runner</h1>
+
+    <div id="page-1" class="page">
+      <div class="content">
+        <div>
+          <h2>
+            Make the most of your chingu speedrun.
+          </h2>
+        </div>
+        <a class="call-to-action" href="https://slack.com/oauth/authorize?scope=incoming-webhook,commands&client_id=158095711217.169077180816"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
+        <div class="call-to-action ">
+          <span><a href="#page-2" class="borderless-btn">Getting Started ></a></span>
+        </div>
+      </div>
+    </div>
+
+    <div id="page-2" class="page">
+      <div class="content">
+        <h2>1. Add an item doable in a day.</h2>
+        <pre>/run add [title]</pre>
+      </div>
+    </div>
+
+    <div id="page-3" class="page">
+      <div class="content">
+        <h2>2. Complete today's item.</h2>
+        <pre>/run done</pre>
+      </div>
+    </div>
+
+    <div id="page-4" class="page">
+      <div class="content">
+        <h2>3. Check progress.</h2>
+        <pre>/run list</pre>
+      </div>
+    </div>
+
+    <script>
+      let dash = [];
+      for (var i = 0; i > -500; i -= 20) {
+        dash.push( i + 'px 0px 0px yellow' )
+      }
+
+      let t = document.getElementById('titlemark')
+      t.style.textShadow = dash.join(',')
+    </script>
   </body>
 </html>
