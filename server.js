@@ -44,8 +44,6 @@ app.post('/command', function(req, res) {
       request.post(data.webhook, {form: {text: req.body.user_name + ' says hello~'}})
     }
   })
-  console.log(req.body)
-  res.json(data)
 })
 
 app.listen(port, function() {
