@@ -7,6 +7,7 @@
     <link href="style.css" rel="stylesheet">
   </head>
   <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.0/clipboard.min.js"></script>
 
     <div id="landing-bkgd">
     </div>
@@ -29,7 +30,17 @@
     <div id="page-2" class="page">
       <div class="content">
         <h2>1. Add an item doable in a day.</h2>
+
         <pre>/run add [title]</pre>
+
+        <!-- Target -->
+        <input id="foo" value="/run add [title]">
+        <input id="foo-wo-title" value="/run add [title]" type="hidden">
+        <!-- Trigger -->
+        <button class="btn" data-clipboard-target="#foo">
+          <!-- <img src="assets/clippy.svg" alt="Copy to clipboard"> -->
+        </button>
+
       </div>
     </div>
 
@@ -65,7 +76,7 @@
         var target = $('#page-2')
         $('html, body').stop().animate({
           scrollLeft: target.offset().left
-        }, 500)
+        }, 200)
       })
 
       // for (var i = 1; i < 3; i++) {
