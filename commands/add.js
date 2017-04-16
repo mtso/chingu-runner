@@ -22,14 +22,16 @@ function add(body, args) {
 
     let day = new Day({
       _user_id: body.user_id,
-
+      title: args,
     })
 
-    let response = {
-      response_type: 'ephemeral',
-      text: 'Hello, you tried echo on ' + args
-    }
-    return resolve(response)
+    day.save((err, data) => {
+      let response = {
+        response_type: 'ephemeral',
+        text: 'Added ' + data.title
+      }
+      resolve(response)
+    })
   })
 }
 

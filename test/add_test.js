@@ -1,5 +1,5 @@
 const request = require('supertest')
-const expect = require('chai').expect;
+const expect = require('chai').expect
 const app = require('../server')
 
 describe('command add', function() {
@@ -14,7 +14,6 @@ describe('command add', function() {
         if (err) {
           throw err;
         }
-
         let body = res.body
         expect(body.response_type).to.eq('ephemeral')
         expect(body.text).to.eq('A title is required to add a new day.')

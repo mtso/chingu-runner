@@ -12,6 +12,10 @@ const DaySchema = new mongoose.Schema({
   done: {
     type: Boolean,
   },
+  created_at: {
+    type: Date,
+    default: Date.now,
+  }
 })
 
 module.exports = mongoose.model('day', DaySchema)
