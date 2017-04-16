@@ -6,7 +6,7 @@ const commands = require('./commands')
 module.exports = function(req, res) {
 
   let text = req.body.text.split(' ')
-  let cmd = commands[text.unshift()]
+  let cmd = commands[text.shift()]
   if (cmd) {
     // let opts = {
     //   team_id: req.body
