@@ -41,9 +41,13 @@ app.get('/auth', function(req, res) {
     if (err) {
       return console.error('ERROR', err)
     }
-    console.log(body)
-    let team = JSON.parse(body).team.domain
-    res.redirect('https://' + team + '.slack.com')
+    body = JSON.parse(body)
+    if (body.error === 'missing_scope') {
+      res.send('Chingu Runner added to your team!')
+    } else {
+      let team = body.team.domain
+      res.redirect('https://' + team + '.slack.com')
+    }
   }
 
   request.post(authUrl, data, function(err, res, body) {
