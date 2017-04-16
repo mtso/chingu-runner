@@ -12,7 +12,10 @@ function checkUser(body, callback) {
   })
 
   user.save((err, data) => {
-    callback(err, data)
+    if (err && err.code !== 11000) {
+      return callback(err, data)
+    }
+    callback(null, data)
   })
 }
 
@@ -34,7 +37,6 @@ function add(body, args) {
 
       function handleCount(err, count) {
         if (err) {
-          console.log(err)
           return reject(new EphemeralError(err.toString()))
         }
 
