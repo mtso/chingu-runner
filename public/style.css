@@ -49,8 +49,8 @@ body {
 #page-2 {
   left: 100%;
 
-  animation-name: slideLeft;
-  animation-duration: 2s;
+  /*animation-name: slideLeft;
+  animation-duration: 2s;*/
 }
 
 #page-3 {
@@ -96,7 +96,7 @@ pre {
   height: 3em;
 }
 
-@keyframes slideLeft {
+/*@keyframes slideLeft {
   0% {
     transform: translate3d(100%, 0, 0);
   }
@@ -104,4 +104,4 @@ pre {
   100% {
     transform: none;
   }
-}
+}*/
