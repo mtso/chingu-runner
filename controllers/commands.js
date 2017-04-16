@@ -22,7 +22,7 @@ function shout(body, args) {
       } else {
         request.post({
             url: team.webhook,
-            body: { text: body.user_name + ' shouts HELLO~' },
+            body: { text: '@' + body.user_name + ' shouts HELLO~' },
             json: true
           }
           // Need to change this so that if access is revoked, we remove the team webhook
