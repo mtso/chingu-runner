@@ -13,9 +13,12 @@ function list(body, args) {
           let error = new EphemeralError(err.toString())
           return reject(error)
         }
+        let previousDone = true;
         let days = data.map(d => {
           let box = d.done ? '[X]' : '[ ]'
-          return box + ' ' + d.title
+          let markToday = (previousDone && !d.done) ? ' (Today)' : ''
+          previousDone = d.done
+          return box + ' ' + d.title + markToday
         }).join('\n')
         let response = {
           response_type: 'ephemeral',
