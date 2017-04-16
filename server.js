@@ -11,8 +11,6 @@ const indexPath = path.resolve(__dirname, 'public')
 const authController = require('./controllers/auth')
 const runController = require('./controllers/runner')
 
-let Team = require('./models/Team')
-
 app.use(morgan('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
