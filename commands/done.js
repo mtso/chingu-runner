@@ -21,7 +21,7 @@ function done(body, args) {
       }
       today = data[0]
       if (!today) {
-        return reject(new EphemeralError('You have not added any days!'))
+        return reject(new EphemeralError('You have no incomplete items.'))
       }
       let update = {
         isDone: true,
