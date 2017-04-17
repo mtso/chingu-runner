@@ -9,35 +9,30 @@ function help(body, args) {
     let attachments = [
       {
         color: '#FFFB02',
-        text: 'Chingu Runner commands:',
+        title: 'Chingu Runner commands:',
         fields: [
           {
             title: 'Adds an item to your speedrun list',
             value: '```/run add [title]```',
-            mrkdwn_in: ['value'],
           },
           {
             title: 'Marks today\'s item as complete',
             value: '```/run done```',
-            mrkdwn_in: ['value'],
           },
           {
             title: 'Print a list of all your items',
             value: '```/run list```',
-            mrkdwn_in: ['value'],
           },
           {
             title: 'Removes the last item from your list',
             value: '```/run pop```',
-            mrkdwn_in: ['value'],
           },
           {
             title: 'Marks the latest done item as not done',
             value: '```/run undone```',
-            mrkdwn_in: ['value'],
           },
         ],
-        mrkdn_in: ['fields'],
+        mrkdwn_in: ['fields'],
         footer: '<https://chingurunner.herokuapp.com/ | Chingu Runner>',
       }
     ]
