@@ -35,7 +35,11 @@ function sendDigestForTeam(team) {
 function findDays(user) {
   let now = new Date()
   let midnight = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
-
+  console.log(now, midnight)
+  Day.find({_user_id: user._id})
+    .exec((err, days) => {
+      console.log(days)
+    })
   Day.find({_user_id: user._id, completed_at: { $gte: midnight }})
     .exec((err, days) => {
       console.log(days)
