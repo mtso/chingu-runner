@@ -13,6 +13,10 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  _team_id: {
+    type: String,
+    required: true,
+  }
 })
 
 module.exports = mongoose.model('user', UserSchema)
