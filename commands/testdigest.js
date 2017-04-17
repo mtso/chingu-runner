@@ -15,10 +15,20 @@ function testdigest() {
     Team
       .find({})
       .exec((err, teams) => {
-        console.log(err, teams)
+        // console.log(err, teams)
+
+        teams.forEach(sendDigestForTeam)
       })
     resolve(new EphMessage('received command'))
   })
+}
+
+function sendDigestForTeam(team) {
+  User.find({_team_id: team._id})
+    .exec((err, users) => {
+      console.log(users)
+    })
+
 }
 
 // request.post({
