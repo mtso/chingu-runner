@@ -14,22 +14,27 @@ function help(body, args) {
           {
             title: 'Adds an item to your speedrun list',
             value: '`/run add [title]`',
+            short: false,
           },
           {
             title: 'Marks today\'s item as complete',
             value: '`/run done`',
+            short: false,
           },
           {
-            title: 'Prints a list of all your items',
+            title: 'Print a list of all your items',
             value: '`/run list`',
+            short: false,
           },
           {
             title: 'Removes the last item from your list',
             value: '`/run pop`',
+            short: false,
           },
           {
             title: 'Marks the latest done item as not done',
             value: '`/run undone`',
+            short: false,
           },
         ],
         mrkdn_in: ['fields', 'text'],
