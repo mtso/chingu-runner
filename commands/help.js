@@ -16,19 +16,19 @@ function help(body, args) {
             value: '`/run add [title]`',
           },
           {
-            title: 'Marks today\'s item as complete'
+            title: 'Marks today\'s item as complete',
             value: '`/run done`',
           },
           {
-            title: 'Prints a list of all your items'
+            title: 'Prints a list of all your items',
             value: '`/run list`',
           },
           {
-            title: 'Removes the last item from your list'
+            title: 'Removes the last item from your list',
             value: '`/run pop`',
           },
           {
-            title: 'Marks the latest done item as not done'
+            title: 'Marks the latest done item as not done',
             value: '`/run undone`',
           },
         ]
