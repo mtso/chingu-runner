@@ -87,7 +87,8 @@ function findDays() {
                     return '<@' + u.user_name + '> finished: ' + daysForUser.join(', ')
                   })
 
-                let dateString = '<!date^' + Date.now() + '^{date_short}|' + fallbackDate + '>'
+                let timestamp = Math.floor(Date.now() / 1000)
+                let dateString = '<!date^' + timestamp + '^{date_short}|' + fallbackDate + '>'
                 let digest = ['Runner\'s Digest | ' + dateString +':'];
                 digest = digest.concat(userText).join('\n')
                 console.log(fallbackDate, team.webhook, digest)
