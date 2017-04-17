@@ -13,31 +13,31 @@ function help(body, args) {
         fields: [
           {
             title: 'Adds an item to your speedrun list',
-            value: '```/run add [title]```',
-            short: false,
+            text: '```/run add [title]```',
+            mrdkwn: true,
           },
           {
             title: 'Marks today\'s item as complete',
-            value: '```/run done```',
-            short: false,
+            text: '```/run done```',
+            mrdkwn: true,
           },
           {
             title: 'Print a list of all your items',
-            value: '```/run list```',
-            short: false,
+            text: '```/run list```',
+            mrdkwn: true,
           },
           {
             title: 'Removes the last item from your list',
-            value: '```/run pop```',
-            short: false,
+            text: '```/run pop```',
+            mrdkwn: true,
           },
           {
             title: 'Marks the latest done item as not done',
-            value: '```/run undone```',
-            short: false,
+            text: '```/run undone```',
+            mrdkwn: true,
           },
         ],
-        mrkdn_in: ['fields', 'text'],
+        mrkdn_in: ['fields'],
         footer: '<https://chingurunner.herokuapp.com/ | Chingu Runner>',
       }
     ]
