@@ -1,5 +1,6 @@
 const Day = require('../models/Day')
 const EphemeralError = require('../utils/ephemeral-error')
+const EphemeralMessage = require('../utils/ephemeral-message')
 const User = require('../models/User')
 const config = require('../config.json')
 
@@ -19,7 +20,6 @@ function add(body, args) {
         user_name: body.user_name,
         _team_id: body.team_id,
       })
-
       user.save(countDays)
     }
 
@@ -35,12 +35,9 @@ function add(body, args) {
       if (err) {
         return reject(new EphemeralError(err.toString()))
       }
-
       if (count > config.MAX_DAYS) {
-        let response = {
-          response_type: 'ephemeral',
-          text: 'You can only have ' + config.MAX_DAYS + ' days planned.',
-        }
+        let text = 'You can only have ' + config.MAX_DAYS + ' days planned.';
+        let response = new EphemeralMessage(text)
         return reject(response)
       }
 
@@ -48,15 +45,11 @@ function add(body, args) {
         _user_id: body.user_id,
         title: args,
       })
-
       day.save(handleSave)
     }
 
     function handleSave(err, data) {
-      let response = {
-        response_type: 'ephemeral',
-        text: 'Added ' + data.title
-      }
+      let response = new EphemeralMessage('Added ' + data.title)
       resolve(response)
     }
   })
