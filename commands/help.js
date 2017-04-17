@@ -12,24 +12,24 @@ function help(body, args) {
         title: 'Chingu Runner commands:',
         fields: [
           {
-            text: 'Adds an item to your speedrun list',
-            value: '`/run add [title]`',
+            title: '`/run add [title]` Adds an item to your speedrun list',
+            // value: '`/run add [title]`',
           },
           {
-            text: 'Marks today\'s item as complete',
-            value: '`/run done`',
+            title: '`/run done` Marks today\'s item as complete',
+            // value: '`/run done`',
           },
           {
-            text: 'Print a list of all your items',
-            value: '`/run list`',
+            title: '`/run list` Print a list of all your items',
+            // value: '`/run list`',
           },
           {
-            text: 'Removes the last item from your list',
-            value: '`/run pop`',
+            title: '`/run pop` Removes the last item from your list',
+            // value: '`/run pop`',
           },
           {
-            text: 'Marks the latest done item as not done',
-            value: '`/run undone`',
+            title: '`/run undone` Marks the latest done item as not done',
+            // value: '`/run undone`',
           },
         ],
         mrkdwn_in: ['fields'],
