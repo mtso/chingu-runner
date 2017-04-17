@@ -21,6 +21,7 @@ function undone(body, args) {
       }
       let toUndo = data.shift()
       toUndo.isDone = false
+      toUndo.completed_at = null
       toUndo.save(handleSave)
     }
 

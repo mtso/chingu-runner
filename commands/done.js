@@ -23,20 +23,24 @@ function done(body, args) {
       if (!today) {
         return reject(new EphemeralError('You have not added any days!'))
       }
-      Day.update({_id: today._id}, {isDone: true}, handleUpdate)
+      let update = {
+        isDone: true,
+        completed_at: Date.now(),
+      }
+      Day.update({_id: today._id}, update, handleUpdate)
     }
 
     function handleUpdate(err, data) {
       if (err) {
         return reject(new EphemeralError(err))
       }
-      console.log(data)
       let response = {
         response_type: 'ephemeral',
         text: 'You finished ' + today.title + '!'
       }
       resolve(response)
-      Team.findOne({_id: body.team_id}, 'webhook', postCompletion)
+      // Comment out to try daily digest.
+      // Team.findOne({_id: body.team_id}, 'webhook', postCompletion)
     }
 
     function postCompletion(err, team) {

@@ -17,6 +17,9 @@ const DaySchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  completed_at: {
+    type: Date,
+  },
 })
 
 // Not sure if this works. (http://stackoverflow.com/a/7592756/2684355)
