@@ -8,8 +8,12 @@ const Day = require('../models/Day')
 // compile daily digest
 // for each team, make post request
 
-function findTeams() {
-
+function sendDailyDigest() {
+  Team
+    .find({})
+    .exec((err, teams) => {
+      console.log(err, teams)
+    })
 }
 
 // request.post({
@@ -23,3 +27,5 @@ function findTeams() {
 //   // Need to change this so that if access is revoked, we remove the team webhook
 //   , (err, data) => console.log(err, data.body)
 // )
+
+sendDailyDigest()
