@@ -12,6 +12,8 @@ function sendDigest() {
   let midnight = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
   let fallbackDate = [now.getUTCMonth() + 1, now.getUTCDate(), now.getUTCFullYear()].join('/')
 
+  console.log('Sending daily digest.', now)
+
   Day.find({completed_at: { $gte: midnight }})
     .exec((err, days) => {
 
@@ -42,7 +44,6 @@ function sendDigest() {
                 let dateString = '<!date^' + timestamp + '^{date_short}|' + fallbackDate + '>'
                 let digest = ['Runner\'s Digest | ' + dateString +':'];
                 digest = digest.concat(userText).join('\n')
-                console.log(fallbackDate, team.webhook, digest)
 
                 request.post({
                   url: team.webhook,
@@ -51,7 +52,11 @@ function sendDigest() {
                     link_names: true,
                   },
                   json: true,
-                }, (err, result) => console.log(err, result.body))
+                }, (err, result) => {
+                  if (err || !result.body === 'ok') {
+                    console.error(err)
+                  }
+                })
               })
             })
         })
