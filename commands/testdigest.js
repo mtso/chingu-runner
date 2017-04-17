@@ -4,6 +4,26 @@ const Day = require('../models/Day')
 
 const EphMessage = require('../utils/ephemeral-message')
 
+/*
+let DigestData = {
+  '_team_id': {
+    'user_id': ['done title'],
+    'user_id': ['done title']
+  },
+  '_team_id': {
+    'user_id': ['done title'],
+    'user_id': ['done title']
+  },
+}
+
+get all items completed today
+get user info for items completed
+add user items to each team in data
+get webhooks
+for each webhook
+send digest
+*/
+
 // get team webhooks
 // get users that belong to a team
 // for each user, get the last 3 tasks that they completed today
