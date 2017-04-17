@@ -57,9 +57,34 @@ function findDays(user) {
   let now = new Date()
   let midnight = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
 
+  let data = {};
+
   Day.find({_user_id: user._id, completed_at: { $gte: midnight }})
     .exec((err, days) => {
-      console.log(days)
+
+      let userIds = days.map(d => d._user_id)
+      User.find({_id: {$in: userIds}})
+        .exec((err, users) => {
+
+          let teamIds = users.reduce((bucket, u) => {
+            bucket[u._team_id] = true
+            return bucket
+          }, {})
+          teamIds = Object.keys(teamIds)
+
+          Team.find({_id: {$in: teamIds}})
+            .exec((err, teams) => {
+
+              console.log(days, teamIds, users)
+
+              teams.forEach((team) => {
+                let dataTeam = data[team._id] = {}
+                dataTeam.webhook = team.webhook
+                dataTeam.users = users.filter(u => u._team_id === team._id)
+
+              })
+            })
+        })
     })
 }
 
