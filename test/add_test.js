@@ -7,7 +7,7 @@ describe('command add', function() {
     request(app)
       .post('/command')
       .set('Content-Type', 'application/json')
-      .send('{"user_id":"U4PDPJQ4X","text":"add"}')
+      .send('{"user_id":"test_user_id","text":"add"}')
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function(err, res) {

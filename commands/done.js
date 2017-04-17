@@ -8,8 +8,7 @@ function done(body, args) {
   // else try to find item with id
   return new Promise((resolve, reject) => {
     var today;
-    // Don't handle id targeting yet
-    // if (!args.trim()) {
+
     Day
       .find({_user_id: body.user_id, isDone: false})
       .sort({created_at: 1})
@@ -39,29 +38,7 @@ function done(body, args) {
         text: 'You finished ' + today.title + '!'
       }
       resolve(response)
-      // Comment out to try daily digest.
-      // Team.findOne({_id: body.team_id}, 'webhook', postCompletion)
     }
-
-    function postCompletion(err, team) {
-      // Team is null here when in local dev env.
-      if (err || !team) {
-        return console.error(err)
-      }
-
-      request.post({
-          url: team.webhook,
-          body: {
-            text: '<@' + body.user_name + '> finished today!',
-            link_names: true,
-          },
-          json: true,
-        }
-        // Need to change this so that if access is revoked, we remove the team webhook
-        , (err, data) => console.log(err, data.body)
-      )
-    }
-    // }
   })
 }
 

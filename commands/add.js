@@ -24,7 +24,7 @@ function add(body, args) {
     }
 
     function countDays(err, _) {
-      if (err) { // && err.code !== 11000) {
+      if (err) {
         return reject(new EphemeralError(err))
       }
       Day.where({_user_id: body.user_id})
