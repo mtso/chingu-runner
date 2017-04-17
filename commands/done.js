@@ -4,10 +4,10 @@ const Day = require('../models/Day')
 const EphemeralError = require('../utils/ephemeral-error')
 
 function done(body, args) {
-  var today;
   // If no args, complete today's item
   // else try to find item with id
   return new Promise((resolve, reject) => {
+    var today;
     // Don't handle id targeting yet
     // if (!args.trim()) {
     Day
