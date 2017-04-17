@@ -13,6 +13,16 @@ function list(body, args) {
           let error = new EphemeralError(err.toString())
           return reject(error)
         }
+
+        if (data.length < 1) {
+          let response = {
+            response_type: 'ephemeral',
+            text: 'No items found! Add one with `/run add [title]`',
+            mrkdn: true,
+          }
+          return resolve(response)
+        }
+
         let previousDone = true;
         let days = data.map(d => {
           let box = d.done ? '[X]' : '[ ]'
