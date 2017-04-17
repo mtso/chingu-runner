@@ -1,8 +1,11 @@
-const request = require('./request')
+const request = require('request')
+const mongoose = require('mongoose')
 
 const Team = require('../models/Team')
 const User = require('../models/User')
 const Day = require('../models/Day')
+
+mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI)
 
 function sendDigest() {
   let now = new Date()
@@ -56,3 +59,7 @@ function sendDigest() {
 }
 
 sendDigest()
+
+setInterval(_ => {
+  process.exit()
+}, 30 * 1000);
