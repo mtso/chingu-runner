@@ -27,7 +27,7 @@ function list(body, args) {
         let days = data.map(d => {
           let box = d.isDone ? '[X]' : '[ ]'
           let markToday = (previousDone && !d.isDone) ? ' (Today)' : ''
-          previousDone = d.done
+          previousDone = d.isDone
           return box + ' ' + d.title + markToday
         }).join('\n')
         let response = {
