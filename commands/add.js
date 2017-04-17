@@ -44,6 +44,7 @@ function add(body, args) {
       let day = new Day({
         _user_id: body.user_id,
         title: args,
+        isDone: false,
       })
       day.save(handleSave)
     }

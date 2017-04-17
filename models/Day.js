@@ -9,8 +9,9 @@ const DaySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  done: {
+  isDone: {
     type: Boolean,
+    required: true,
   },
   created_at: {
     type: Date,
