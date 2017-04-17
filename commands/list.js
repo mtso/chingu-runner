@@ -1,8 +1,6 @@
 const Day = require('../models/Day')
 const EphemeralError = require('../utils/ephemeral-error')
 
-const MAX_DAYS = 30;
-
 function list(body, args) {
   return new Promise((resolve, reject) => {
     Day
