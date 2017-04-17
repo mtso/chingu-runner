@@ -27,7 +27,7 @@ function help(body, args) {
             title: '`/run undone` marks the latest done item as not done'
           },
         ],
-        mrkdn_in: ['fields', 'text'],
+        mrkdn_in: ['fields', 'title'],
         footer: '<https://chingurunner.herokuapp.com/ | Chingu Runner>',
       }
     ]
