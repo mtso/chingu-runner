@@ -43,6 +43,12 @@ function findDays(user) {
     })
 }
 
+// Format:
+// On March 31, 2017
+// @mtso completed: Research Slack
+// @jonathanmaddison: Learn react
+// @ecccs: Learn Angular, complete recipe box
+
 // request.post({
 //     url: team.webhook,
 //     body: {
