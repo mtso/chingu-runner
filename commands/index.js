@@ -3,7 +3,6 @@ const list = require('./list')
 const done = require('./done')
 const pop = require('./pop')
 const undone = require('./undone')
-const testdigest = require('./testdigest')
 
 module.exports = {
   add,
@@ -11,5 +10,4 @@ module.exports = {
   done,
   pop,
   undone,
-  testdigest,
 }
