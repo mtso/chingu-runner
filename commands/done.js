@@ -52,7 +52,7 @@ function done(body, args) {
       request.post({
           url: team.webhook,
           body: {
-            text: '@' + body.user_name + ' finished today!',
+            text: '<@' + body.user_name + '> finished today!',
             link_names: true,
           },
           json: true,
