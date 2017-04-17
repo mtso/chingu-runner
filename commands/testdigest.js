@@ -2,6 +2,8 @@ const Team = require('../models/Team')
 const User = require('../models/User')
 const Day = require('../models/Day')
 
+const EphMessage = require('../utils/ephemeral-message')
+
 // get team webhooks
 // get users that belong to a team
 // for each user, get the last 3 tasks that they completed today
@@ -9,11 +11,14 @@ const Day = require('../models/Day')
 // for each team, make post request
 
 function testdigest() {
-  Team
-    .find({})
-    .exec((err, teams) => {
-      console.log(err, teams)
-    })
+  return new Promise((resolve, reject) => {
+    Team
+      .find({})
+      .exec((err, teams) => {
+        console.log(err, teams)
+      })
+    resolve(new EphMessage('received command'))
+  })
 }
 
 // request.post({
