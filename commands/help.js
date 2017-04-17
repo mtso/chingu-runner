@@ -9,27 +9,27 @@ function help(body, args) {
     let attachments = [
       {
         color: '#FFFB02',
-        title: 'Chingu Runner commands:',
+        text: 'Chingu Runner commands:',
         fields: [
           {
-            title: '`/run add [title]` Adds an item to your speedrun list',
-            // value: '`/run add [title]`',
+            title: 'Adds an item to your speedrun list',
+            value: '```/run add [title]```',
           },
           {
-            title: '`/run done` Marks today\'s item as complete',
-            // value: '`/run done`',
+            title: 'Marks today\'s item as complete',
+            value: '```/run done```',
           },
           {
-            title: '`/run list` Print a list of all your items',
-            // value: '`/run list`',
+            title: 'Print a list of all your items',
+            value: '```/run list```',
           },
           {
-            title: '`/run pop` Removes the last item from your list',
-            // value: '`/run pop`',
+            title: 'Removes the last item from your list',
+            value: '```/run pop```',
           },
           {
-            title: '`/run undone` Marks the latest done item as not done',
-            // value: '`/run undone`',
+            title: 'Marks the latest done item as not done',
+            value: '```/run undone```',
           },
         ],
         mrkdwn_in: ['fields'],
