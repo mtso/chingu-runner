@@ -24,15 +24,22 @@ function testdigest() {
 }
 
 function sendDigestForTeam(team) {
-  User.find({})
-    .exec((err, users) => {
-      console.log(users)
-    })
   User.find({_team_id: team._id})
     .exec((err, users) => {
       console.log(users)
-    })
 
+      users.forEach(findDays)
+    })
+}
+
+function findDays(user) {
+  let now = new Date()
+  let midnight = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
+
+  Day.find({_user_id: user._id, completed_at: { $gte: midnight }})
+    .exec((err, days) => {
+      console.log(days)
+    })
 }
 
 // request.post({
