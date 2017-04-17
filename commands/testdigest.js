@@ -24,6 +24,10 @@ function testdigest() {
 }
 
 function sendDigestForTeam(team) {
+  User.find({})
+    .exec((err, users) => {
+      console.log(users)
+    })
   User.find({_team_id: team._id})
     .exec((err, users) => {
       console.log(users)
