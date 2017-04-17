@@ -15,16 +15,16 @@ function add(body, args) {
 
     // Add user if user doesn't exist
     function checkUser(body) {
-      let user = new User({
+      let userInfo = {
         _id: body.user_id,
         user_name: body.user_name,
         _team_id: body.team_id,
-      })
-      user.save(countDays)
+      }
+      User.update({_id: body.user_id}, userInfo, {upsert: true}, countDays)
     }
 
     function countDays(err, _) {
-      if (err && err.code !== 11000) {
+      if (err) { // && err.code !== 11000) {
         return reject(new EphemeralError(err))
       }
       Day.where({_user_id: body.user_id})
