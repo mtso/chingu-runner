@@ -13,28 +13,28 @@ function help(body, args) {
         fields: [
           {
             title: 'Adds an item to your speedrun list',
-            text: '```/run add [title]```',
-            mrdkwn: true,
+            value: '```/run add [title]```',
+            mrkdwn: true,
           },
           {
             title: 'Marks today\'s item as complete',
-            text: '```/run done```',
-            mrdkwn: true,
+            value: '```/run done```',
+            mrkdwn: true,
           },
           {
             title: 'Print a list of all your items',
-            text: '```/run list```',
-            mrdkwn: true,
+            value: '```/run list```',
+            mrkdwn: true,
           },
           {
             title: 'Removes the last item from your list',
-            text: '```/run pop```',
-            mrdkwn: true,
+            value: '```/run pop```',
+            mrkdwn: true,
           },
           {
             title: 'Marks the latest done item as not done',
-            text: '```/run undone```',
-            mrdkwn: true,
+            value: '```/run undone```',
+            mrkdwn: true,
           },
         ],
         mrkdn_in: ['fields'],
