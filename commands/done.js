@@ -11,7 +11,7 @@ function done(body, args) {
     // Don't handle id targeting yet
     // if (!args.trim()) {
     Day
-      .find({_user_id: body.user_id, done: {$exists: false}})
+      .find({_user_id: body.user_id, isDone: false})
       .sort({created_at: 1})
       .exec(handleFound)
 
@@ -23,7 +23,7 @@ function done(body, args) {
       if (!today) {
         return reject(new EphemeralError('You have not added any days!'))
       }
-      Day.update({_id: today._id}, {done: true}, handleUpdate)
+      Day.update({_id: today._id}, {isDone: true}, handleUpdate)
     }
 
     function handleUpdate(err, data) {
