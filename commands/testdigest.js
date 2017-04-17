@@ -11,6 +11,7 @@ const EphMessage = require('../utils/ephemeral-message')
 // for each team, make post request
 
 function testdigest() {
+  sendDigestForTeam({_id: 'dev_team'})
   return new Promise((resolve, reject) => {
     Team
       .find({})
@@ -35,11 +36,7 @@ function sendDigestForTeam(team) {
 function findDays(user) {
   let now = new Date()
   let midnight = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
-  console.log(now, midnight)
-  Day.find({_user_id: user._id})
-    .exec((err, days) => {
-      console.log(days)
-    })
+
   Day.find({_user_id: user._id, completed_at: { $gte: midnight }})
     .exec((err, days) => {
       console.log(days)
