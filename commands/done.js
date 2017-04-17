@@ -46,7 +46,7 @@ function done(body, args) {
     function postCompletion(err, team) {
       // Team is null here when in local dev env.
       if (err || !team) {
-        return reject(new EphemeralError(err))
+        return console.error(err)
       }
 
       request.post({
