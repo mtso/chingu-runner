@@ -12,26 +12,23 @@ function help(body, args) {
         text: 'Chingu Runner commands:',
         fields: [
           {
-            title: 'Adds an item to your speedrun list',
-            value: '`/run add [title]`',
+            title: '`/run add [title]` adds an item to your speedrun list'
           },
           {
-            title: 'Marks today\'s item as complete',
-            value: '`/run done`',
+            title: '`/run done` marks today\'s item as complete'
           },
           {
-            title: 'Prints a list of all your items',
-            value: '`/run list`',
+            title: '`/run list` prints a list of all your items'
           },
           {
-            title: 'Removes the last item from your list',
-            value: '`/run pop`',
+            title: '`/run pop` removes the last item from your list'
           },
           {
-            title: 'Marks the latest done item as not done',
-            value: '`/run undone`',
+            title: '`/run undone` marks the latest done item as not done'
           },
-        ]
+        ],
+        mrkdn: true,
+        footer: '<https://chingurunner.herokuapp.com/ | Chingu Runner>',
       }
     ]
     let response = {
